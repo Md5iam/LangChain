@@ -22,14 +22,13 @@ template= PromptTemplate(
   partial_variables={'format_instruction':parser.get_format_instructions()}
 )
 
-prompt = template.invoke({
+chain = template | model | parser
+
+result = chain.invoke({
   'topic': 'Competitive Programming'
 })
 
-result = model.invoke(prompt)
-final_res = parser.parse(result.text)
-
-print(final_res)
+print(result)
 
 
 

@@ -21,14 +21,18 @@ template = PromptTemplate(
     partial_variables={'format_instruction':parser.get_format_instructions()}
 )
 
-prompt = template.invoke({
+chain = template | model | parser 
+
+result = chain.invoke({
   'place': 'bangladeshi'
 })
+print(result)
 
-print(prompt)
 
-result = model.invoke(prompt)
-
-final_result = parser.parse(result.text)
-
-# print(final_result)
+# prompt = template.invoke({
+#   'place': 'bangladeshi'
+# })
+# # print(prompt)
+# result = model.invoke(prompt)
+# final_result = parser.parse(result.text)
+# # print(final_result)

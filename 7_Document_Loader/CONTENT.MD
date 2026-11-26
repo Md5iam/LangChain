@@ -1,0 +1,12 @@
+- What is RAG?
+- RAG components
+- Document Loaders in LangChain
+- Text Loader
+- PyPDFLoader
+- Limitations
+- Directory Loader
+- Load vs Lazy Load
+- WebBaseLoader
+- CSVLoader
+- Other Document Loaders
+- Custom Document Loader

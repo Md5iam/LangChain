@@ -8,7 +8,7 @@ Code Demo
 Runnable Category 
  - Runnable Sequence
  - Runnable Parallel
- - RunnablePassthrough 
- - RunnableLambda
- - RunnableBranch
+ - RunnablePassthrough ( output same as input )
+ - RunnableLambda ( convert python function to a runnable)
+ - RunnableBranch (Conditional chain )
  - LCEL

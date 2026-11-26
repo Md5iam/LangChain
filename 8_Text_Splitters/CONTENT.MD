@@ -6,6 +6,6 @@
 
 Text Splitters
  |- Length Based
- |- Text Structure Based
+ |- Text Structure Based 
  |- Document Structure Based
  |- Semantic Meaning based

@@ -56,7 +56,7 @@ prompt = PromptTemplate(
     input_variables = ['context', 'question']
 )
 
-question          = "is the topic of nuclear fusion discussed in this video? if yes then what was discussed"
+question          = "is the topic of nuclear fusion discussed in this video? if yes then what was discussed in using numerical point"
 retrieved_docs    = retriever.invoke(question)
 # print(retrieved_docs)
 
@@ -68,4 +68,9 @@ final_prompt = prompt.invoke({
     'question': question
 })
 
-print(final_prompt)
+# print(final_prompt)
+
+## Step 4 - Generation
+answer = llm.invoke(final_prompt)
+print(answer.text)
+

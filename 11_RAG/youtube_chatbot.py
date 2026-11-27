@@ -34,3 +34,13 @@ chunks = splitter.create_documents([transcript])
 vector_store = FAISS.from_documents(chunks, embeddings)
 # print(vector_store.index_to_docstore_id)
 
+## Step 2 - Retrieval
+retriever = vector_store.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 2}
+)
+# print(retriver)
+ans = retriever.invoke("Whay is deepmind")
+# print(ans)
+
+

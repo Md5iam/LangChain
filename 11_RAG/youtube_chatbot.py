@@ -1,0 +1,36 @@
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import PromptTemplate
+
+load_dotenv()
+
+llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", temperature = 0.2)
+embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+
+## Step 1a - Indexing (Document Ingestion )
+video_id = "Gfr50f6ZBvo"  # only the ID, not the full URL
+
+try:
+    ytt_api = YouTubeTranscriptApi()
+    fetched = ytt_api.fetch(video_id, languages=["en"])
+
+    # Flatten it to plain text
+    transcript = " ".join(chunk.text for chunk in fetched)
+    # print(transcript)
+
+except TranscriptsDisabled:
+    print("No captions available for this video.") 
+
+## Step 1b - Indexing (Text Splitting)
+splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=200)
+chunks = splitter.create_documents([transcript])
+# print(len(chunks)) 
+# print(chunks[0])
+
+## Step 1c & 1d - Indexing (Embedding Generation and Storing in Vector Store)
+vector_store = FAISS.from_documents(chunks, embeddings)
+# print(vector_store.index_to_docstore_id)
+

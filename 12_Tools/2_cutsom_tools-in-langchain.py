@@ -26,8 +26,8 @@ result = multiply.invoke({
 
 # print(result)
 
-# print(multiply.name)
-# print(multiply.description)
-# print(multiply.args)
+print(multiply.name)
+print(multiply.description)
+print(multiply.args)
 
 # print(multiply.args_schema.model_json_schema())

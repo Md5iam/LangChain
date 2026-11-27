@@ -72,5 +72,7 @@ final_prompt = prompt.invoke({
 
 ## Step 4 - Generation
 answer = llm.invoke(final_prompt)
-print(answer.text)
+# print(answer.text)
+
+
 
